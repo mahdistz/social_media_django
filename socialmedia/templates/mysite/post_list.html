@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Posts</title>
+</head>
+<body>
+<center><h2>List of Posts</h2></center>
+{% for post in object_list %}
+    <center>
+    <div >
+    <p>title : {{ post.title }}</p>
+    <img src="{{ post.image.url }}" alt="image" width="500px" height="auto">
+        <br>
+    <button type="submit" style="color:blue;"><a href="/postdetail/{{ post.id }}"> More Detail</a></button>
+    </div>
+    </center>
+{% endfor %}
+</body>
+</html>

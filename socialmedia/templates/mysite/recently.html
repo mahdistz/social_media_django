@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recently post</title>
+</head>
+<body>
+<center><h1>Recently post</h1></center>
+{% for post in posts %}
+    <center><div >
+    <p>title : {{ post.title }}</p>
+    <p>Created Time:{{ post.create_date|date:"Y/M/d" }}</p>
+    <img src="{{ post.image.url }}" alt="image" width="500px" height="auto">
+        <br></div></center>
+{% endfor %}
+
+</body>
+</html>

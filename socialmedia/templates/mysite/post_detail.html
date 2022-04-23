@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Detail</title>
+</head>
+<body>
+{#<h2>Detail of Post</h2>#}
+{#<p> title: {{ object.title }}</p>#}
+{#<p> caption: {{ object.caption }}</p>#}
+{#<p> user: {{ object.user }}</p>#}
+{#<p> created_date: {{ object.create_date }}</p>#}
+{#<p> email: {{ object.user.email }}</p>#}
+{#<img src="{{ object.image.url }}" alt="image" width="500px" height="auto">#}
+{#<br>#}
+{#you have {{ object.comment_set.count }} comments#}
+{#<br>#}
+{#{% for comment in object.comment_set.all %}#}
+{#{{ comment }}#}
+{#{% endfor %}#}
+{#<br>#}
+
+<div class="card">
+    <p class="card-body">Title:{{ post.title}}</p>
+    <p class="card-body">Caption:{{ post.caption }}</p>
+    <p class="card-body">Email of user:{{ post.user.email }}</p>
+    <p class="card-body">Image of Post:</p>
+    <img src="{{ post.image.url }}" alt="" style="width: 500px;height: auto">
+    <p class="card-body">Created Time:{{ post.create_date|date:"Y/M/d" }}</p>
+    <p class="card-body">Author:{{ post.user }}</p>
+</div>
+<hr>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <input type="submit" value="Create Comment">
+</form>
+<hr>
+<p>{{ comments.count }} comments</p>
+
+{% for comment in comments %}
+
+    <div class="card">
+        <p class="card-header">{{ comment.user }} | {{ comment.created_date|timesince }}</p>
+        <p>{{ comment.comment }}</p>
+    </div>
+{% empty %}
+    <p>No comment yet</p>
+{% endfor %}
+</body>
+</html>
